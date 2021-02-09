@@ -1,5 +1,6 @@
 import telebot
 from telebot import types
+import time
 
 bot = telebot.TeleBot('1500810910:AAEA40SqqqlUxnqBA7iuw4w8yPuU-0ql9ng')
 
@@ -87,5 +88,8 @@ def data_processing(message):
     bot.send_message(chat_id, f'Приняли Вашу заявку\n{ap.get_info()}', reply_markup=markup)
 
 
-if __name__ == '__main__':
-    bot.polling(none_stop=True, interval=0)
+while True:
+    try:
+        bot.polling(none_stop=True, interval=0, timeout=20)
+    except Exception as E:
+        time.sleep(1)
